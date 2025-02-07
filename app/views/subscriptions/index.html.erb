@@ -1,0 +1,21 @@
+<% content_for :page_title, "Subscriptions" %>
+<% content_for :page_description, "List of all subscriptions in the system." %>
+
+<% if @subscriptions.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Subscription ID</th>
+        <th>Customer ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @subscriptions %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No subscriptions found.</p>
+<% end %>
