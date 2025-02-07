@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :webhooks do
+    resource :stripe, only: :create, controller: "stripe"
+  end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  resources :subscriptions, only: %i[index]
+
+  # Default dev:secret.
+  # Run `rails credentials:edit` to set basic authentication credentials.
+  # More info: https://github.com/rails/mission_control-jobs#authentication
+  mount MissionControl::Jobs::Engine, at: "/jobs"
+
+
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  root to: "subscriptions#index"
 end
