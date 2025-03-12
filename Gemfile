@@ -8,7 +8,7 @@ gem "kamal", require: false
 gem "mission_control-jobs"
 gem "propshaft"
 gem "puma", ">= 5.0"
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 8.0.2"
 gem "stimulus-rails"
 gem "stripe"
 gem "thruster", require: false
